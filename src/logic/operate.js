@@ -1,7 +1,14 @@
 import Big from 'big.js';
 
+const dotCounter = (number) => (number.toString().match(/\./g) || []).length;
+
 export default function operate(num1, num2, operation) {
   let result = new Big(0);
+  if (dotCounter(num1) > 1 || dotCounter(num2) > 1) {
+    result = 'It is not a number';
+    return result;
+  }
+
   const numberOne = new Big(num1);
   let numberTwo;
   let temp = false;

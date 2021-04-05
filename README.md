@@ -9,6 +9,7 @@
 - Clone the repo `https://github.com/abeidahmed/react-calculator.git`
 - `cd` into the project
 - Run `git pull origin milestone-1` to pull the `milestone-1` branch
+  (any other branch can be pulled by replacing `milestone-1` with `branchName`)
 - Run `npm install` to install all the dependencies
 - Run `npm start`
 

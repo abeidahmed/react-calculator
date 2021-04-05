@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Display({ name }) {
-  return <div>{name}</div>;
+export default function Display({ result }) {
+  return <div>{result}</div>;
 }
 
 Display.propTypes = {
-  name: PropTypes.string,
+  result: PropTypes.string,
 };
 
 Display.defaultProps = {
-  name: '0',
+  result: '0',
 };

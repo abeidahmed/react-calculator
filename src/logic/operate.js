@@ -22,7 +22,7 @@ export default function operate(num1, num2, operation) {
     case '-':
       result = numberOne.minus(numberTwo);
       break;
-    case 'X':
+    case 'x':
       result = numberOne.times(numberTwo);
       break;
     case '÷':

@@ -20,7 +20,7 @@ export default function operate(num1, num2, operation) {
       break;
     case '÷':
       if (num1 === '0' || num2 === '0') temp = true;
-      result = temp ? 'cannot divide number with 0' : numberOne.div(numberTwo);
+      result = temp ? 'Cannot divide number with 0' : numberOne.div(numberTwo);
       break;
     case '%':
       result = numberOne.times('0.01');

@@ -1,86 +1,170 @@
-/* eslint-disable no-param-reassign */
-import operate from './operate';
+import operator from './operate';
 
-const calculate = (dataObject, btnName) => {
-  const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  const operations = ['+', '-', '÷', 'X'];
-
-  if (nums.includes(btnName) && !dataObject.next === null) {
-    dataObject.next = btnName;
-  } else if (btnName === '.' && dataObject.operation === null) {
-    dataObject.next += btnName;
-  } else if (
-    btnName === '.'
-    && dataObject.total === null
-    && dataObject.next === null
-  ) {
-    return '';
-  } else if (
-    nums.includes(btnName)
-    && dataObject.operation === null
-    && dataObject.next
-  ) {
-    dataObject.next += btnName;
-  } else if (operations.includes(btnName)) {
-    dataObject.operation = btnName;
-    if (dataObject.next && dataObject.total) {
-      dataObject.next = dataObject.total;
-      dataObject.total = null;
+const calculate = (data, buttonName) => {
+  const isNum = (testStr) => /\d/.test(testStr);
+  const isOp = (testStr) => {
+    if (testStr.length > 1) {
+      return false;
     }
-  } else if (
-    dataObject.next
-    && dataObject.operation
-    && nums.includes(btnName)
-    && !dataObject.total
-  ) {
-    dataObject.total = btnName;
-  } else if (btnName === '.' && dataObject.operation) {
-    dataObject.total += btnName;
-  } else if (
-    nums.includes(btnName)
-    && dataObject.operation
-    && dataObject.total
-  ) {
-    dataObject.total += btnName;
+    return /\+|-|x|÷|%/.test(testStr);
+  };
+
+  if (buttonName === 'AC') {
+    return {
+      total: null,
+      next: null,
+      operation: null,
+    };
   }
 
-  if (btnName === '=') {
+  if (isNum(buttonName)) {
+    return {
+      next: (data.next || '') + buttonName,
+    };
+  }
+
+  if (!data.next) {
     if (
-      !dataObject.total
-      && dataObject.obj.total === null
-      && !dataObject.next
-      && dataObject.obj.next === null
+      buttonName === '-'
+      && data.operation !== null
+      && data.operation.endsWith('n')
     ) {
-      dataObject.total = null;
-      dataObject.next = null;
-      return '';
+      return {
+        next: null,
+        operation: null,
+      };
     }
-    if (dataObject.total !== null || dataObject.next !== null) {
-      dataObject.total = operate(
-        dataObject.next,
-        dataObject.total,
-        dataObject.operation,
-      );
+
+    if (isOp(buttonName) || buttonName === '.' || buttonName === '%') {
+      return {
+        next: `0${buttonName}`,
+        operation: buttonName,
+      };
     }
-    dataObject.operation = '=';
-  } else if (btnName === 'AC') {
-    dataObject.total = null;
-    dataObject.next = null;
-    dataObject.operation = null;
-  } else if (btnName === '+/-') {
-    if (dataObject.next) {
-      dataObject.total *= -1;
-      dataObject.total = dataObject.total.toString();
-    } else if (!dataObject.total) {
-      dataObject.next *= -1;
-      dataObject.next = dataObject.next.toString();
-    }
-  } else if (btnName === '%') {
-    dataObject.operation = btnName;
-    dataObject.total = operate(dataObject.next, null, dataObject.operation);
   }
-  return dataObject;
+
+  const chkErr = (message) => {
+    if (message.includes('ERROR')) {
+      return {
+        total: message,
+        next: null,
+        operation: null,
+      };
+    }
+    return '';
+  };
+
+  if (isOp(buttonName)) {
+    if (isOp(data.next.charAt(data.next.length - 1))) {
+      return {};
+    }
+    let len;
+    if (data.operation) {
+      len = data.operation.length;
+    }
+
+    if (len > 0) {
+      const nums = data.next.split(/\+|-|x|÷|%/);
+      const op = data.operation.charAt(0);
+      if (data.next.startsWith('-')) {
+        const res = operator(`-${nums[1]}`, nums[2], op);
+        if (chkErr(res)) {
+          return chkErr(res);
+        }
+        return {
+          total: res,
+          next: res + buttonName,
+          operation: buttonName,
+        };
+      }
+      const res = operator(nums[0], nums[1], op);
+      if (chkErr(res)) {
+        return chkErr(res);
+      }
+      return {
+        total: res,
+        next: res + buttonName,
+        operation: buttonName,
+      };
+    }
+
+    return {
+      next: data.next + buttonName,
+      operation: (data.operation || '') + buttonName,
+    };
+  }
+
+  if (buttonName === '.') {
+    if (
+      isOp(data.next.charAt(data.next.length - 1))
+      || data.next.endsWith('.')
+    ) {
+      return {};
+    }
+    return {
+      next: data.next + buttonName,
+    };
+  }
+
+  if (buttonName === '+/-') {
+    if (
+      !!data.next
+      && data.next.startsWith('-')
+      && !!data.total
+      && data.total.startsWith('-')
+    ) {
+      return {
+        total: data.total.slice(1),
+        next: data.next.slice(1),
+      };
+    }
+
+    if (!!data.next && data.next.startsWith('-')) {
+      return {
+        next: data.next.slice(1),
+      };
+    }
+
+    if (!data.next) {
+      return {
+        next: `-${0}`,
+      };
+    }
+
+    return {
+      next: `-${data.next}`,
+    };
+  }
+
+  if (buttonName === '=') {
+    if (isOp(data.next.charAt(data.next.length - 1))) {
+      return {};
+    }
+    const op = data.operation.charAt(0);
+    const nums = data.next.split(/\+|-|x|÷|%/);
+    if (data.next.startsWith('-')) {
+      const res = operator(`-${nums[1]}`, nums[2], op);
+      if (chkErr(res)) {
+        return chkErr(res);
+      }
+      return {
+        total: res,
+        next: res,
+        operation: null,
+      };
+    }
+    const res = operator(nums[0], nums[1], op);
+    if (chkErr(res)) {
+      return chkErr(res);
+    }
+    return {
+      total: res,
+      next: res,
+      operation: null,
+    };
+  }
+
+  return {};
 };
 
 export default calculate;
-/* eslint-enable no-param-reassign */

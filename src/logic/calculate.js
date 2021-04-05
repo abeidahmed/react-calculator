@@ -1,86 +1,79 @@
 /* eslint-disable no-param-reassign */
-import operate from './operate';
+import operationFunction from './operate';
 
-const calculate = (dataObject, btnName) => {
+function calculate(dataObj, btnName) {
   const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const operations = ['+', '-', '÷', 'X'];
+  const { operate } = operationFunction;
 
-  if (nums.includes(btnName) && !dataObject.next === null) {
-    dataObject.next = btnName;
-  } else if (btnName === '.' && dataObject.operation === null) {
-    dataObject.next += btnName;
+  if (nums.includes(btnName) && dataObj.next == null) {
+    dataObj.next = btnName;
+  } else if (btnName === '.' && dataObj.operation === null) {
+    dataObj.next += btnName;
   } else if (
     btnName === '.'
-    && dataObject.total === null
-    && dataObject.next === null
+    && dataObj.total === null
+    && dataObj.next === null
   ) {
     return '';
   } else if (
     nums.includes(btnName)
-    && dataObject.operation === null
-    && dataObject.next
+    && dataObj.operation === null
+    && dataObj.next
   ) {
-    dataObject.next += btnName;
+    dataObj.next += btnName;
   } else if (operations.includes(btnName)) {
-    dataObject.operation = btnName;
-    if (dataObject.next && dataObject.total) {
-      dataObject.next = dataObject.total;
-      dataObject.total = null;
+    dataObj.operation = btnName;
+    if (dataObj.next && dataObj.total) {
+      dataObj.next = dataObj.total;
+      dataObj.total = null;
     }
   } else if (
-    dataObject.next
-    && dataObject.operation
+    dataObj.next
+    && dataObj.operation
     && nums.includes(btnName)
-    && !dataObject.total
+    && !dataObj.total
   ) {
-    dataObject.total = btnName;
-  } else if (btnName === '.' && dataObject.operation) {
-    dataObject.total += btnName;
-  } else if (
-    nums.includes(btnName)
-    && dataObject.operation
-    && dataObject.total
-  ) {
-    dataObject.total += btnName;
+    dataObj.total = btnName;
+  } else if (btnName === '.' && dataObj.operation) {
+    dataObj.total += btnName;
+  } else if (nums.includes(btnName) && dataObj.operation && dataObj.total) {
+    dataObj.total += btnName;
   }
 
   if (btnName === '=') {
     if (
-      !dataObject.total
-      && dataObject.obj.total === null
-      && !dataObject.next
-      && dataObject.obj.next === null
+      !dataObj.total
+      && dataObj.obj.total === null
+      && !dataObj.next
+      && dataObj.obj.next == null
     ) {
-      dataObject.total = null;
-      dataObject.next = null;
+      dataObj.total = null;
+      dataObj.next = null;
       return '';
     }
-    if (dataObject.total !== null || dataObject.next !== null) {
-      dataObject.total = operate(
-        dataObject.next,
-        dataObject.total,
-        dataObject.operation,
-      );
+    if (dataObj.total !== null || dataObj.next !== null) {
+      dataObj.total = operate(dataObj.next, dataObj.total, dataObj.operation);
     }
-    dataObject.operation = '=';
+    dataObj.operation = '=';
   } else if (btnName === 'AC') {
-    dataObject.total = null;
-    dataObject.next = null;
-    dataObject.operation = null;
+    dataObj.total = null;
+    dataObj.next = null;
+    dataObj.operation = null;
   } else if (btnName === '+/-') {
-    if (dataObject.next) {
-      dataObject.total *= -1;
-      dataObject.total = dataObject.total.toString();
-    } else if (!dataObject.total) {
-      dataObject.next *= -1;
-      dataObject.next = dataObject.next.toString();
+    if (dataObj.next) {
+      dataObj.total *= -1;
+      dataObj.total = dataObj.total.toString();
+    } else if (!dataObj.total) {
+      dataObj.next *= -1;
+      dataObj.next = dataObj.next.toString();
     }
   } else if (btnName === '%') {
-    dataObject.operation = btnName;
-    dataObject.total = operate(dataObject.next, null, dataObject.operation);
+    dataObj.operation = btnName;
+    dataObj.total = operate(dataObj.next, null, dataObj.operation);
   }
-  return dataObject;
-};
+  return dataObj;
+}
 
-export default calculate;
+export default { calculate };
 /* eslint-enable no-param-reassign */

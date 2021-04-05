@@ -22,7 +22,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Display result={total || next || '0'} />
+        <Display result={total || '0'} input={next || '_'} />
         <ButtonPanel clickHandle={(btnName) => this.handleClick(btnName)} />
         <span style={{ display: 'none' }}>{operation}</span>
       </div>

@@ -1,7 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import Display from './Display';
 import ButtonPanel from './ButtonPanel';
 import calculate from '../logic/calculate';
+
+const Container = styled.div`
+  width: 700px;
+  margin: 48px auto;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -21,11 +27,11 @@ class App extends React.Component {
     const { total, next, operation } = this.state;
 
     return (
-      <div>
+      <Container>
         <Display result={total || '0'} input={next || '_'} />
         <ButtonPanel clickHandle={(btnName) => this.handleClick(btnName)} />
         <span style={{ display: 'none' }}>{operation}</span>
-      </div>
+      </Container>
     );
   }
 }

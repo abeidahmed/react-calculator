@@ -13,6 +13,11 @@
 - Run `npm install` to install all the dependencies
 - Run `npm start`
 
+## Testing
+
+- Run `npm run test` to run all the tests, or
+- Run `npm run test:watch` to watch the tests
+
 ## Deployment
 
 - heroku create $APP_NAME --buildpack mars/create-react-app

@@ -35,7 +35,7 @@ const H1 = styled.h1`
 `;
 
 const Header = () => (
-  <StyledHeader>
+  <StyledHeader data-testid="header">
     <H1>
       <StyledLink to="/">Math Magician</StyledLink>
     </H1>

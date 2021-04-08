@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculator renders home page 1`] = `
+<div
+  className="sc-eCImvq etHGKp"
+>
+  <div
+    className="sc-bdvvaa epAHfG"
+  >
+    <p
+      className="sc-gsDJrp gIEJOc"
+    >
+      _
+    </p>
+    <p
+      className="sc-gsDJrp iVfYxk"
+      fontSize={42}
+    >
+      0
+    </p>
+  </div>
+  <div
+    data-testid="button-panel"
+  >
+    <div
+      className="sc-hKwCoD bHqEiN"
+    >
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        AC
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        +/-
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        %
+      </button>
+      <button
+        className="sc-dkPtyc hwJofF"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        ÷
+      </button>
+    </div>
+    <div
+      className="sc-hKwCoD bHqEiN"
+    >
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        7
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        8
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        9
+      </button>
+      <button
+        className="sc-dkPtyc hwJofF"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        x
+      </button>
+    </div>
+    <div
+      className="sc-hKwCoD bHqEiN"
+    >
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        4
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        5
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        6
+      </button>
+      <button
+        className="sc-dkPtyc hwJofF"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        -
+      </button>
+    </div>
+    <div
+      className="sc-hKwCoD bHqEiN"
+    >
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        1
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        2
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        3
+      </button>
+      <button
+        className="sc-dkPtyc hwJofF"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        +
+      </button>
+    </div>
+    <div
+      className="sc-hKwCoD bHqEiN"
+    >
+      <button
+        className="sc-dkPtyc intobT"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        0
+      </button>
+      <button
+        className="sc-dkPtyc izUORN"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        .
+      </button>
+      <button
+        className="sc-dkPtyc hwJofF"
+        data-testid="button"
+        onClick={[Function]}
+        type="button"
+      >
+        =
+      </button>
+    </div>
+  </div>
+  <span
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+</div>
+`;

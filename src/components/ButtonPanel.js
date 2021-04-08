@@ -28,7 +28,7 @@ class ButtonPanel extends React.Component {
 
   render() {
     return (
-      <div>
+      <div data-testid="button-panel">
         <Row>
           {this.renderButton('AC', false, '#e0e0e0')}
           {this.renderButton('+/-', false, '#e0e0e0')}

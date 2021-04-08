@@ -26,6 +26,7 @@ export default function Button({
 }) {
   return (
     <StyledButton
+      data-testid="button"
       type="button"
       onClick={() => clickHandle(name)}
       wide={wide}

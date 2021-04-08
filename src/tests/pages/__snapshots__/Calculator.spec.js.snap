@@ -19,7 +19,9 @@ exports[`Calculator renders home page 1`] = `
       0
     </p>
   </div>
-  <div>
+  <div
+    data-testid="button-panel"
+  >
     <div
       className="sc-hKwCoD bHqEiN"
     >
